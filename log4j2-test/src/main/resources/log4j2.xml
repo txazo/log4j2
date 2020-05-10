@@ -2,13 +2,30 @@
 <Configuration status="DEBUG">
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
-            <ThresholdFilter level="TRACE" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
         </Console>
+
+        <File name="AppLog" fileName="/data/applogs/test/app.log">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+        </File>
+
+        <Async name="AsyncLog">
+            <AppenderRef ref="AppLog" />
+        </Async>
+
+        <FileAppender name="MyTest" filePath="/data/applogs/test/app.log">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+        </FileAppender>
     </Appenders>
+
     <Loggers>
+        <Logger name="org.txazo.log4j2">
+            <AppenderRef ref="MyTest" />
+        </Logger>
+
         <Root level="DEBUG">
-            <AppenderRef ref="Console"/>
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="AsyncLog" />
         </Root>
     </Loggers>
 </Configuration>

@@ -17,6 +17,10 @@
         <module>log4j2-test</module>
     </modules>
 
+    <properties>
+        <jdk.version>1.7</jdk.version>
+    </properties>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -142,8 +146,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.5.1</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
                 <executions>
@@ -151,15 +155,15 @@
                         <id>default-compile</id>
                         <configuration>
                             <compilerArgument>-proc:none</compilerArgument>
-                            <source>1.7</source>
-                            <target>1.7</target>
+                            <source>${jdk.version}</source>
+                            <target>${jdk.version}</target>
                         </configuration>
                     </execution>
                     <execution>
                         <id>default-testCompile</id>
                         <configuration>
-                            <source>1.7</source>
-                            <target>1.7</target>
+                            <source>${jdk.version}</source>
+                            <target>${jdk.version}</target>
                         </configuration>
                     </execution>
                 </executions>
